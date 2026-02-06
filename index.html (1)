@@ -1,0 +1,353 @@
+
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Souvenirs d'Amour 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+         * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(120deg, #ff5f8a, #ff8fa3);
+  min-height: 100vh;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.background span {
+  position: fixed;
+  animation: float 10s infinite;
+  font-size: 22px;
+  opacity: 0.6;
+}
+
+@keyframes float {
+  from { bottom: -10%; }
+  to { bottom: 110%; }
+}
+
+.page {
+  display: none;
+  padding: 25px;
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+}
+
+.page.active {
+  display: block;
+}
+
+h1, h2 {
+  margin-bottom: 15px;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: none;
+}
+
+button {
+  margin-top: 20px;
+  padding: 14px;
+  width: 100%;
+  border-radius: 30px;
+  border: none;
+  background: #fff;
+  color: #ff4d6d;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#poemBox {
+  background: rgba(255,255,255,0.2);
+  padding: 20px;
+  border-radius: 15px;
+  line-height: 1.8;
+}
+
+.actions button {
+  margin-top: 10px;
+}
+#poemBox {
+  background: rgba(255,255,255,0.25);
+  color: #fff;
+  padding: 25px;
+  border-radius: 18px;
+  font-size: 15px;
+}
+  </style>
+  
+</head>
+<body>
+
+  <!-- BACKGROUND ANIMÉ -->
+  <div class="background">
+    <span>❤️</span><span>🌸</span><span>💖</span><span>🌹</span><span>💐</span>
+  </div>
+
+  <!-- PAGE 1 : ACCUEIL -->
+  <section class="page active" id="page-home">
+    <h1>Joyeuse Saint-Valentin ❤️</h1>
+    <p>
+      <strong>JKYAKA TECHN</strong> vous souhaite une merveilleuse fête de l’amour.
+      Nous avons créé ce petit espace pour vous offrir
+      un <strong>poème de souvenirs d’amour</strong>,
+      à partager avec la personne qui fait battre votre cœur.
+    </p>
+    <button onclick="goToPage(2)">Commencer 💌</button>
+  </section>
+
+  <!-- PAGE 2 : QUESTIONS -->
+  <section class="page" id="page-questions">
+    <h2>Ton histoire d’amour 💕</h2>
+
+    <!-- GENRE PARTENAIRE -->
+    <label>Ton/ta partenaire est :</label>
+    <select id="gender">
+      <option value="il">Un homme</option>
+      <option value="elle">Une femme</option>
+    </select>
+
+    <label>Prénom de ton/ta partenaire</label>
+    <input type="text" id="name">
+
+    <label>À quel âge as-tu commencé à aimer ?</label>
+    <input type="number" id="age">
+
+    <label>Où vous êtes-vous rencontrés ?</label>
+    <select id="meeting">
+      <option>À l’école</option>
+      <option>Au travail</option>
+      <option>Par des amis</option>
+      <option>Sur internet</option>
+      <option>Autre</option>
+    </select>
+    <input type="text" id="meetingOther" placeholder="Si autre, précise">
+
+    <label>Ce que tu aimes le plus chez lui/elle</label>
+    <select id="best">
+      <option>ton sourire</option>
+      <option>ta gentillesse</option>
+      <option>ton soutien</option>
+      <option>ton caractère</option>
+      <option>ta beauté </option>
+      <option>Autre</option>
+    </select>
+    <input type="text" id="bestOther" placeholder="Si autre, précise">
+
+    <label>Que représente-t-il/elle pour toi ?</label>
+    <select id="meaning">
+      <option>Mon amour</option>
+      <option>Mon meilleur ami(e)</option>
+      <option>Mon avenir</option>
+      <option>Mon cœur </option>
+      <option>Mon soutien</option>
+    </select>
+
+    <button onclick="generatePoem()">Lire le poème ✨</button>
+  </section>
+
+  <!-- PAGE 3 : POÈME -->
+  <section class="page" id="page-poem">
+    <h2>Ton poème 💖</h2>
+
+    <div id="poemBox"></div>
+
+    <div class="actions">
+      <button onclick="shareWhatsApp()">WhatsApp</button>
+      <button onclick="copyPoem()">Copier</button>
+      <button onclick="downloadImage()">Télécharger en image 📸</button>
+      <button onclick="contactCreator()">Contacter le créateur</button>
+    </div>
+  </section>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <script>
+ function goToPage(n) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+
+  if (n === 1) document.getElementById("page-home").classList.add("active");
+  if (n === 2) document.getElementById("page-questions").classList.add("active");
+  if (n === 3) document.getElementById("page-poem").classList.add("active");
+}
+
+/* ===============================
+   🎲 POÈMES DISPONIBLES
+   👉 Ajoute-en ici facilement
+================================ */
+
+const poems = [
+
+  function(data) {
+    return `
+Mon amour ${data.name},
+
+Je me souviens encore…
+À ${data.age} ans, mon cœur ne savait pas
+qu’il allait trouver un jour un refuge en toi.
+
+Notre rencontre ${data.meeting}
+n’était pas un hasard,
+c’était le début d’un souvenir
+que je veux garder toute ma vie.
+
+Ce que j’aime le plus chez toi,
+c’est ${data.best},
+car c’est là que je reconnais ton âme.
+
+Tu es ${data.meaning},
+et aujourd’hui encore,
+je t’écris pour que tu te souviennes
+que mon amour pour toi est réel.
+
+❤️ Joyeuse Saint-Valentin ❤️
+`;
+  },
+
+  function(data) {
+    return `
+${data.name},
+
+Avant toi, l’amour n’était qu’une idée floue.
+Puis un jour,  ${data.meeting},
+tu es entré(e) dans ma vie
+et tout a changé.
+
+À ${data.age} ans,
+j’ai compris que l’amour pouvait être doux,
+simple et sincère.
+
+Ce que j’admire le plus chez toi,
+c’est ${data.best},
+et c’est pour cela que tu es ${data.meaning}.
+
+Si tu relis ce poème,
+sache qu’il est écrit
+pour que tu te souviennes
+que je t’aime encore, et toujours.
+
+💖
+`;
+  },
+
+  function(data) {
+    return `
+À toi, ${data.name},
+
+Je t’écris ces mots
+comme on ouvre un vieux souvenir.
+
+Je me rappelle le jour
+où nos chemins se sont croisés  ${data.meeting}.
+Je ne savais pas encore
+que tu deviendrais ${data.meaning}.
+
+À ${data.age} ans,
+mon cœur a appris à aimer,
+et ce que j’aime le plus chez toi,
+c’est ${data.best}.
+
+Garde ce poème,
+comme une preuve simple
+que mon amour pour toi
+vit encore aujourd’hui.
+
+🌹
+`;
+  }
+
+];
+
+/* ===============================
+   💌 GÉNÉRATION DU POÈME
+================================ */
+
+function generatePoem() {
+
+  const data = {
+    gender: document.getElementById("gender").value,
+    name: document.getElementById("name").value || "Mon amour",
+    age: document.getElementById("age").value || "quelques",
+    meeting: getSelectValue("meeting", "meetingOther"),
+    best: getSelectValue("best", "bestOther"),
+    meaning: document.getElementById("meaning").value
+  };
+
+  // Choix aléatoire du poème
+  const randomPoem = poems[Math.floor(Math.random() * poems.length)];
+  const poemText = randomPoem(data);
+
+  document.getElementById("poemBox").innerText = poemText;
+  goToPage(3);
+}
+
+/* ===============================
+   🔁 UTILITAIRES
+================================ */
+
+function getSelectValue(selectId, otherId) {
+  const val = document.getElementById(selectId).value;
+  if (val === "Autre") {
+    return document.getElementById(otherId).value || "un endroit spécial";
+  }
+  return val;
+}
+
+/* ===============================
+   📤 PARTAGE & EXPORT
+================================ */
+
+function shareWhatsApp() {
+  const text = document.getElementById("poemBox").innerText;
+  window.open("https://wa.me/?text=" + encodeURIComponent(text));
+}
+
+function copyPoem() {
+  navigator.clipboard.writeText(document.getElementById("poemBox").innerText);
+  alert("Poème copié ❤️");
+}
+
+function contactCreator() {
+  window.open("https://wa.me/234981852940");
+}
+
+/* ===============================
+   📸 TÉLÉCHARGER EN IMAGE
+================================ */
+
+function downloadImage() {
+  const poemBox = document.getElementById("poemBox");
+
+  html2canvas(poemBox).then(canvas => {
+    const link = document.createElement("a");
+    link.download = "poeme-saint-valentin.png";
+    link.href = canvas.toDataURL();
+    link.click();
+  });
+} 
+  </script>
+</body>
+</html>
