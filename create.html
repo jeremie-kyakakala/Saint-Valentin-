@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créer mon espace | Gestion interne</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="page-create">
+  <div class="create-container">
+    <div class="card">
+      <h1>Créer mon espace professionnel</h1>
+      <p class="subtext">Configurez votre entreprise en quelques instants</p>
+
+      <form id="createForm" class="form">
+        <!-- Nom de l'entreprise -->
+        <div class="form-group">
+          <label for="companyName">Nom de l'entreprise</label>
+          <input type="text" id="companyName" required placeholder="Ex: Chez Paul, Boutique du Coin">
+        </div>
+
+        <!-- Upload logo -->
+        <div class="form-group">
+          <label for="companyLogo">Logo de l'entreprise</label>
+          <input type="file" id="companyLogo" accept="image/*" required>
+          <div class="logo-preview" id="logoPreview">Aperçu</div>
+        </div>
+
+        <!-- Type d'entreprise -->
+        <div class="form-group">
+          <label>Type d'activité</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="companyType" value="restaurant" required>
+              Restaurant
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="companyType" value="boutique" required>
+              Boutique
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">Créer mon espace</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

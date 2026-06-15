@@ -1,0 +1,130 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau de bord | Administration</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="page-admin">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img id="sidebarLogo" src="" alt="Logo entreprise" class="company-logo">
+      <h3 id="sidebarName"></h3>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="#dashboard" class="nav-link active" data-section="dashboard">Dashboard</a></li>
+        <li><a href="#sales" class="nav-link" data-section="sales">Ventes</a></li>
+        <li><a href="#links" class="nav-link" data-section="links">Liens d'accès</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Conteneur principal -->
+  <div class="main-wrapper">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+      </div>
+      <div class="header-right">
+        <span class="admin-name">Administrateur</span>
+        <button class="btn-logout" id="logoutBtn">Déconnexion</button>
+      </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="content">
+      <!-- Section Dashboard -->
+      <section id="dashboard" class="content-section active">
+        <h2>Tableau de bord</h2>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>Commandes validées</h3>
+            <p class="stat-value" id="totalOrders">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>Produits vendus</h3>
+            <p class="stat-value" id="totalProductsSold">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>Chiffre d'affaires</h3>
+            <p class="stat-value" id="totalRevenue">0 FC</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Ventes -->
+      <section id="sales" class="content-section">
+        <h2>Historique des ventes</h2>
+        <p class="info-text">Seules les commandes validées sont affichées</p>
+
+        <div class="table-container">
+          <table class="sales-table">
+            <thead>
+              <tr>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Prix unitaire</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="salesTableBody">
+              <!-- Rempli via JS -->
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3"><strong>TOTAL GÉNÉRAL</strong></td>
+                <td id="grandTotal"><strong>0 FC</strong></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section Liens d'accès -->
+      <section id="links" class="content-section">
+        <h2>Liens d'accès</h2>
+        <p class="info-text">Partagez ces liens pour accéder aux différents espaces</p>
+
+        <div class="links-container">
+          <div class="link-item">
+            <span>Espace Admin</span>
+            <div class="link-box">
+              <input type="text" id="linkAdmin" readonly>
+              <button class="btn-copy" data-target="linkAdmin">Copier</button>
+            </div>
+          </div>
+
+          <div class="link-item">
+            <span>Espace Cuisine</span>
+            <div class="link-box">
+              <input type="text" id="linkCuisine" readonly>
+              <button class="btn-copy" data-target="linkCuisine">Copier</button>
+            </div>
+          </div>
+
+          <div class="link-item">
+            <span>Menu Public</span>
+            <div class="link-box">
+              <input type="text" id="linkMenu" readonly>
+              <button class="btn-copy" data-target="linkMenu">Copier</button>
+            </div>
+          </div>
+
+          <!-- QR Code (simulé) -->
+          <div class="qr-placeholder">
+            <p>QR Code disponible pour chaque lien</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

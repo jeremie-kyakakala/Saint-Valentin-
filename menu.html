@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Client - Restaurant/Boutique</title>
+    <link rel="stylesheet" href="menu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="https://via.placeholder.com/40" alt="Logo entreprise" class="logo">
+                <h1 class="company-name">Mon Restaurant</h1>
+            </div>
+            <div class="cart-icon-container" id="cartToggle">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- GRILLE DE PRODUITS -->
+    <main class="products-section">
+        <div class="container">
+            <div class="products-grid" id="productsGrid">
+                <!-- Les produits seront générés par JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL IMAGE -->
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">×</button>
+            <div class="modal-image-container">
+                <img src="" alt="Image produit" class="modal-image" id="modalImage">
+            </div>
+            <div class="modal-nav">
+                <button class="nav-btn" id="prevImage">←</button>
+                <button class="nav-btn" id="nextImage">→</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANIER -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Votre Panier</h2>
+            <button class="close-cart" id="closeCart">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Votre panier est vide</p>
+        </div>
+        <div class="cart-total">
+            <p>Total : <span id="totalAmount">0.00</span> $</p> 
+        </div> 
+        <button class="validate-btn" id="validateOrder">Valider la commande</button>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <script src="menu.js"></script>
+</body>
+</html>
